@@ -3,11 +3,11 @@
 #include "lcddraw.h"
 
 void
-draw_rectangle(void)
+draw_rectangle(int rowIn)
 {
   int height = 10;
   int width  = 60;
-  int row = 20, col = screenWidth / 2;
+  int row = rowIn, col = screenWidth / 2;
   int left_col = col - (width / 2);
   int top_row  = row - (height / 2);
 
@@ -19,10 +19,10 @@ draw_rectangle(void)
 
 
 void
-draw_triangle(void)
+draw_triangle(int rowIn)
 {
   int height = 40;
-  int row = 80, col = screenWidth / 2;
+  int row = rowIn, col = screenWidth / 2;
 
   int step = 0;
 

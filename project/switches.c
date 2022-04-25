@@ -1,6 +1,7 @@
 #include <msp430.h>
 #include "switches.h"
 #include "led.h"
+#include "libTimer.h"
 
 extern char redraw_screen;
 const char down = 1;
@@ -44,10 +45,10 @@ check_p2_switches(void)
   switch2_state = (p2val & SW2) ? 0 : 1;
   redraw_screen = 1;
   if (switch1_state==1){
-    
+    turn=1;
   }
   if(switch2_state==2){
-    
+    turn=2;
   }
   // switch status changed, redraw
 }

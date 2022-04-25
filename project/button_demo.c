@@ -5,6 +5,7 @@
 #include "switches.h"
 #include "led.h"
 #include "draw_shapes.h"
+#include "buzzer.h"
 
 // WARNING: LCD DISPLAY USES P1.0.  Do not touch!!! 
 
@@ -39,30 +40,12 @@ void main(void)
   led_init();
   switch_p2_init();
   lcd_init();
+  buzzer_init();
   
-  //enableWDTInterrupts();      /**< enable periodic interrupt */
+  enableWDTInterrupts();      /**< enable periodic interrupt */
   or_sr(0x8);	              /**< GIE (enable interrupts) */
   
-  clearScreen(backgroundColor);
-  drawChar5x7(2, 140, 'L', (16 << 5)| 31, backgroundColor);
-  drawChar5x7(38, 140, 'M', (16 <<5)|31, backgroundColor);
-  drawChar5x7(70, 140, 'H', (16 <<5)|31, backgroundColor);
-  drawChar5x7(115, 140, 'C', (16 <<5)|31, backgroundColor);
 
-  while (1) {			/* forever */
-    if (redraw_screen) {
-      redraw_screen = 0;
-      update_text();
-    }
-    green_on = 0;   	/* led off */
-    led_changed = 1;
-    led_update();
-    or_sr(0x10);	/**< CPU OFF */
-    
-    green_on = 1;	/* led on */
-    led_changed = 1;
-    led_update();
-  }
 }
 
     

@@ -2,11 +2,11 @@
 #define _DRAW_SHAPES_H_
 
 /* draws a rectangle */
-void draw_rectangle(void);
+void draw_rectangle(int rowIn);
 /* draws an equaleral triangle by starting at the top with a 
    width of 1 and increasing the width by 1
    for every row */
-void draw_triangle(void);
+void draw_triangle(int rowIn);
 /* draws a circle using bresenham's algorithm */
 void draw_circle(void);
 

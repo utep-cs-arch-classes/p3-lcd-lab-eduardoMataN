@@ -1,40 +1,54 @@
 #include "stateMachines.h"
 #include "led.h"
-
-static int variableLimit  = 5; 
+#include "draw_shapes.h"
+#include "lcdutils.h"
+#include "lcddraw.h"
+static int variableLimit  = 5;
+u_int background=COLOR_BLUE;
 
 // limit to create a variable number of events every second
 // starts off at 50 (250 / 5) events per second
-void fastCounter(void)
-{
-  static int count  = 0;    // state variable used to count up to the variable limit
 
-  // blink the green led fast
-  // how fast depends on variableLimit
-  count ++;
-  if (count >= variableLimit) {
-    count = 0;
-    green_on = 1 - green_on;   // flip green LED
-    greenOn(green_on);
+void waitState(void){
+  clearScreen(background);
+  drawChar5x7(2, 140, 'L', (16<<5)|31, background);
+  drawChar5x7(38, 140, 'M', (16<<5)|31, background);
+  drawChar5x7(70, 140, 'H', (16<<5)|31, background);
+  drawChar5x7(115, 140, 'C', (16<<5)|31, background);
+}
+
+void movingRectangles(void)
+{
+  const int duration=2500;
+  static int recCount=0;
+  static int recRow=0;
+
+  recCount++;
+  if(recCount==250){
+    clearScreen(background);
+    if(recRow>=160){
+      recRow=0;
+    }
+    recRow+=20;
+    draw_rectangle(recRow);
+    recCount=0;
   }
 }
 
-// executes code once per second
-void secondCounter (void)
+void movingTriangles(void)
 {
-  const  int secondLimit = 250;  // number of ticks (interrupts) per second
-  static int secondCount = 0;    // state variable used to count up to 1 second
+  
+  static int triCount=0;
+  static int triRow=0;
 
-  // measure a second
-  secondCount ++;
-  if (secondCount >= 250) {       // once each second
-    red_on = 1 - red_on;          // flip red led
-    led_changed = 1;              // signal update to led state
-    led_update();
-    secondCount = 0;
-    variableLimit *= 3;           // increase time period on variable count
-    if (variableLimit >= 100) {   // if time period reaches limit
-      variableLimit = 5;          // reset
+  triCount++;
+  if(triCount==150){
+    clearScreen(background);
+    if(triRow>=160){
+      triRow=0;
     }
+    triRow+=20;
+    draw_triangle(triRow);
+    triCount=0;
   }
 }
