@@ -3,10 +3,10 @@
 #include "lcddraw.h"
 
 void
-draw_rectangle(int rowIn)
+draw_rectangle(int rowIn, int heightIn, int widthIn)
 {
-  int height = 10;
-  int width  = 60;
+  int height = heightIn;
+  int width  = widthIn;
   int row = rowIn, col = screenWidth / 2;
   int left_col = col - (width / 2);
   int top_row  = row - (height / 2);
@@ -43,7 +43,25 @@ draw_triangle(int rowIn)
   }
 }
 
+void
+draw_back_triangle(int rowIn){
+  int height = 40;
+  int row=rowIn, col = screenWidth / 2;
 
+  int step=0;
+
+  int blue = 31, green = 0, red = 31;
+
+  u_int color = (blue << 11) | (green << 5) | red;
+
+  for (height = 40; height >= step; height--){
+    u_char start_col = col - (height / 2);
+
+    u_char end_col = col + (height / 2);
+    u_char width = end_col - start_col;
+    fillRectangle(col - (height / 2), row+height, width, 1, color);
+  }
+}
 void
 drawHorizontalLine(u_int x_start, u_int x_end, u_int y, u_int colorBGR)
 {
@@ -71,10 +89,10 @@ drawLines(u_int x_coord, u_int y_coord, u_int x_point, u_int y_point, u_int colo
 }
 
 void
-draw_circle(void)
+draw_circle(int ycoord)
 {
   int x_coord = screenWidth / 2;
-  int y_coord = 60;
+  int y_coord = ycoord;
   int r = 20;
   // first point will be the very top;
   int x_point = 0;

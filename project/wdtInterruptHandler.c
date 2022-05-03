@@ -52,7 +52,11 @@ __interrupt_vec(WDT_VECTOR) WDT()
     }
   }
   if(turn==3){
-
+    count++;
+    movingCircles();
+    if(count==3750){
+      turn=5;
+    }
   }
   if(turn==4){
 

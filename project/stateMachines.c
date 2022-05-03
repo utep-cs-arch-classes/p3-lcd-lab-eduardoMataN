@@ -30,7 +30,7 @@ void movingRectangles(void)
       recRow=0;
     }
     recRow+=20;
-    draw_rectangle(recRow);
+    draw_rectangle(recRow, 10, 60);
     recCount=0;
   }
 }
@@ -49,6 +49,24 @@ void movingTriangles(void)
     }
     triRow+=20;
     draw_triangle(triRow);
+    draw_back_triangle(triRow+20);
+    draw_rectangle(triRow+50, 30, 10);
     triCount=0;
+  }
+}
+void movingCircles(void)
+{
+  static int circleCount=0;
+  static int circleY=0;
+
+  circleCount++;
+  if(circleCount==100){
+    clearScreen(background);
+    if(circleY>=160){
+      circleY=0;
+    }
+    circleY+=20;
+    draw_circle(circleY);
+    circleCount=0;
   }
 }
