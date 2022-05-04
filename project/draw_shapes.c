@@ -3,7 +3,7 @@
 #include "lcddraw.h"
 
 void
-draw_rectangle(int rowIn, int heightIn, int widthIn)
+draw_rectangle(int rowIn, int heightIn, int widthIn, int blueIn)
 {
   int height = heightIn;
   int width  = widthIn;
@@ -12,7 +12,7 @@ draw_rectangle(int rowIn, int heightIn, int widthIn)
   int top_row  = row - (height / 2);
 
   u_int blue = 16, green = 0, red = 31;
-  u_int color = (blue << 11) | (green << 5) | red;
+  u_int color = (blue << blueIn) | (green << 5) | red;
 
   fillRectangle(left_col, row, width, height, color);
 }
@@ -26,7 +26,7 @@ draw_triangle(int rowIn)
 
   int step = 0;
 
-  int blue = 31, green = 0, red = 31;
+  int blue = 16, green = 0, red = 31;
 
   u_int color = (blue << 11) | (green << 5) | red;
 
@@ -50,7 +50,7 @@ draw_back_triangle(int rowIn){
 
   int step=0;
 
-  int blue = 31, green = 0, red = 31;
+  int blue = 0, green = 31, red = 0;
 
   u_int color = (blue << 11) | (green << 5) | red;
 
@@ -89,17 +89,17 @@ drawLines(u_int x_coord, u_int y_coord, u_int x_point, u_int y_point, u_int colo
 }
 
 void
-draw_circle(int ycoord)
+draw_circle(int ycoord, int rIn)
 {
   int x_coord = screenWidth / 2;
   int y_coord = ycoord;
-  int r = 20;
+  int r = rIn;
   // first point will be the very top;
   int x_point = 0;
   int y_point = r;
   int decision = 3 - (2 * r);
 
-  u_int color = COLOR_SIENNA;
+  u_int color = COLOR_WHITE;
 
   drawLines(x_coord, y_coord, x_point, y_point, color);
 

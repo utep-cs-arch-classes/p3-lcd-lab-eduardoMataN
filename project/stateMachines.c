@@ -17,7 +17,7 @@ void waitState(void){
   drawChar5x7(115, 140, 'C', (16<<5)|31, background);
 }
 
-void movingRectangles(void)
+void movingTower(void)
 {
   const int duration=2500;
   static int recCount=0;
@@ -30,12 +30,14 @@ void movingRectangles(void)
       recRow=0;
     }
     recRow+=20;
-    draw_rectangle(recRow, 10, 60);
+    draw_rectangle(recRow, 40, 40, 11);
+    draw_triangle(recRow-40);
+    draw_rectangle(recRow, 20, 5, 6);
     recCount=0;
   }
 }
 
-void movingTriangles(void)
+void movingTree(void)
 {
   
   static int triCount=0;
@@ -48,13 +50,13 @@ void movingTriangles(void)
       triRow=0;
     }
     triRow+=20;
-    draw_triangle(triRow);
+    draw_back_triangle(triRow);
     draw_back_triangle(triRow+20);
-    draw_rectangle(triRow+50, 30, 10);
+    draw_rectangle(triRow+60, 30, 10, 20);
     triCount=0;
   }
 }
-void movingCircles(void)
+void movingSnowman(void)
 {
   static int circleCount=0;
   static int circleY=0;
@@ -66,7 +68,11 @@ void movingCircles(void)
       circleY=0;
     }
     circleY+=20;
-    draw_circle(circleY);
+    draw_circle(circleY, 25);
+    draw_circle(circleY-35,20);
+    draw_circle(circleY-65, 15);
+    draw_rectangle(circleY-98, 20, 15, 5);
+    draw_rectangle(circleY-82, 5, 20, 5);
     circleCount=0;
   }
 }

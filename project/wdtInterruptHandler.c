@@ -39,27 +39,27 @@ __interrupt_vec(WDT_VECTOR) WDT()
   }
   if(turn==1){
     count++;
-    movingRectangles();
+    movingTower();
     if(count==3750){
       turn=5;
     }
   }
   if(turn==2){
     count++;
-    movingTriangles();
+    movingTree();
     if(count==3750){
       turn=5;
     }
   }
   if(turn==3){
     count++;
-    movingCircles();
+    movingSnowman();
     if(count==3750){
       turn=5;
     }
   }
   if(turn==4){
-
+    turn=5;
   }
   if(turn==5){
     second_count=0;

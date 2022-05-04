@@ -1,5 +1,6 @@
 void fastCounter(void);
 void secondCounter(void);
 void waitState(void);
-void movingRectangles(void);
-void movingTriangles(void);
+void movingTower(void);
+void movingTree(void);
+void movingSnowman(void);
