@@ -13,7 +13,7 @@ In order to load the toy, enter the project Lab 3 foler and use "make", this
 ##will create all the necessary files for the toy to run. After that, go into
 ##the project folder and use "make" load for the MSP430 to be properly loaded.
 
-###How to use?
+### How to use?
 Once the toy has been loaded onto the MSP430, you will hear a series of
 sounds. This indicates that the toy is ready to be used. A message will be
 displayed on the screen, asking you to enter a speed. You will select a speed
