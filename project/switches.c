@@ -56,5 +56,8 @@ check_p2_switches(void)
   if(switch3_state==1){
     turn=3;
   }
+  if(switch4_state==1){
+    turn=4;
+  }
   // switch status changed, redraw
 }

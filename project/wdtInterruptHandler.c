@@ -6,6 +6,7 @@
 #include "buzzer.h"
 
 int turn=0;
+int state=0;
 
 // function that handles interrupts
 // from the periodic timer
@@ -16,9 +17,10 @@ __interrupt_vec(WDT_VECTOR) WDT()
   const  int second_limit = 250;
   static int second_count = 0;
   static int count=0;
-
  
-  if(turn==0){
+  state=checkState();
+ 
+  if(state==0){
     if(second_count==0){
       waitState();
       buzzer_set_period(1000);
@@ -37,31 +39,35 @@ __interrupt_vec(WDT_VECTOR) WDT()
       buzzer_set_period(0);
     }
   }
-  if(turn==1){
+  if(state==1){
     count++;
     movingTower();
     if(count==3750){
       turn=5;
     }
   }
-  if(turn==2){
+  if(state==2){
     count++;
     movingTree();
     if(count==3750){
       turn=5;
     }
   }
-  if(turn==3){
+  if(state==3){
     count++;
     movingSnowman();
     if(count==3750){
       turn=5;
     }
   }
-  if(turn==4){
-    turn=5;
+  if(state==4){
+    count++;
+    displayCredits();
+    if(count==33750){
+      turn=5;
+    }
   }
-  if(turn==5){
+  if(state==5){
     second_count=0;
     count=0;
     turn=0;
